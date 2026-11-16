@@ -1,44 +1,64 @@
-```mermaid
-flowchart TB
-    subgraph Legenda [Prioridade dos Requisitos]
-        direction LR
-        P_ALTA([Alta: Essencial para o funcionamento]):::alta
-        P_MEDIA([Media: Importante, melhoravel depois]):::media
-        P_BAIXA([Baixa: Funcionalidade complementar]):::baixa
-    end
+# Requisitos do Sistema
 
-    subgraph RF [Requisitos Funcionais]
-        direction TB
-        RF01["RF01: Recolher leituras enviadas pelos sensores"]:::alta
-        RF02["RF02: Validar formato e integridade das leituras"]:::alta
-        RF03["RF03: Verificar leituras face aos limites definidos"]:::alta
-        RF04["RF04: Gerar ou atualizar alarmes por limite"]:::alta
-        RF05["RF05: Consultar lista e detalhes de alarmes ativos"]:::alta
-        RF06["RF06: Reconhecer alarmes com utilizador e data/hora"]:::alta
-        RF07["RF07: Consultar historico de leituras por datas"]:::media
-        RF08["RF08: Definir e alterar limites min/max dos sensores"]:::alta
-        RF09["RF09: Consultar estado e ultima comunicacao"]:::media
-        RF10["RF10: Registar novos sensores no sistema"]:::alta
-        RF11["RF11: Autenticar e controlar perfis"]:::alta
-    end
+Os requisitos definem aquilo que o sistema deve permitir fazer e as condições que deve cumprir.
 
-    subgraph RNF [Requisitos Nao Funcionais]
-        direction TB
-        RNF01["RNF01: Sistema simples e intuitivo de utilizar"]:::media
-        RNF02["RNF02: Guardar dados de forma organizada e integra"]:::alta
-        RNF03["RNF03: Tempo de resposta rapido nas leituras/alarmes"]:::alta
-        RNF04["RNF04: Garantir seguranca e controlo de acesso"]:::alta
-        RNF05["RNF05: Evitar perda de informacao mesmo sem interface"]:::alta
-        RNF06["RNF06: Garantir fiabilidade e disponibilidade continua"]:::alta
-        RNF07["RNF07: Rastreabilidade nas acoes criticas"]:::media
-        RNF08["RNF08: Apresentar mensagens claras ao utilizador"]:::baixa
-    end
+## Requisitos funcionais
 
-    Legenda ~~~ RF
-    RF ~~~ RNF
+| Código | Requisito |
+| :--- | :--- |
+| RF01 | O sistema deve permitir recolher leituras enviadas pelos sensores. |
+| RF02 | O sistema deve permitir validar o formato e a integridade das leituras recebidas. |
+| RF03 | O sistema deve permitir verificar se as leituras estão dentro ou fora dos limites definidos. |
+| RF04 | O sistema deve permitir gerar ou atualizar alarmes quando uma leitura ultrapassa os limites. |
+| RF05 | O sistema deve permitir consultar a lista e os detalhes dos alarmes ativos. |
+| RF06 | O sistema deve permitir reconhecer alarmes ativos, registando o utilizador e a data/hora. |
+| RF07 | O sistema deve permitir consultar o histórico de leituras filtrado por sensor e datas. |
+| RF08 | O sistema deve permitir definir e alterar os limites mínimo e máximo de cada sensor. |
+| RF09 | O sistema deve permitir consultar o estado atual e a última comunicação dos sensores. |
+| RF10 | O sistema deve permitir registar novos sensores no sistema. |
+| RF11 | O sistema deve permitir autenticar utilizadores e controlar permissões por perfil (Operador e Administrador). |
 
-    classDef alta fill:#ffe6e6,stroke:#cc0000,stroke-width:2px,color:#000
-    classDef media fill:#fff4e6,stroke:#e67e22,stroke-width:2px,color:#000
-    classDef baixa fill:#e8f8f5,stroke:#1abc9c,stroke-width:2px,color:#000
-```
+## Requisitos não funcionais
 
+| Código | Requisito |
+| :--- | :--- |
+| RNF01 | O sistema deve ser simples e intuitivo de utilizar. |
+| RNF02 | O sistema deve guardar os dados de forma organizada e íntegra na base de dados. |
+| RNF03 | O sistema deve garantir tempo de resposta rápido na recolha de leituras e geração de alarmes. |
+| RNF04 | O sistema deve garantir segurança e controlo de acesso aos dados e configurações. |
+| RNF05 | O sistema deve evitar perda de informação, mesmo em caso de falha na interface. |
+| RNF06 | O sistema deve garantir fiabilidade e disponibilidade contínua na receção de dados. |
+| RNF07 | O sistema deve garantir rastreabilidade nas ações críticas (reconhecimento de alarmes e alteração de limites). |
+| RNF08 | O sistema deve apresentar mensagens claras e informativas ao utilizador. |
+
+## Prioridade dos requisitos
+
+| Prioridade | Descrição |
+| :--- | :--- |
+| Alta | Essencial para o funcionamento do sistema. |
+| Média | Importante, mas pode ser melhorado numa fase posterior. |
+| Baixa | Funcionalidade complementar. |
+
+## Requisitos com prioridade
+
+| Código | Prioridade |
+| :--- | :--- |
+| RF01 | Alta |
+| RF02 | Alta |
+| RF03 | Alta |
+| RF04 | Alta |
+| RF05 | Alta |
+| RF06 | Alta |
+| RF07 | Média |
+| RF08 | Alta |
+| RF09 | Média |
+| RF10 | Alta |
+| RF11 | Alta |
+| RNF01 | Média |
+| RNF02 | Alta |
+| RNF03 | Alta |
+| RNF04 | Alta |
+| RNF05 | Alta |
+| RNF06 | Alta |
+| RNF07 | Média |
+| RNF08 | Baixa |
