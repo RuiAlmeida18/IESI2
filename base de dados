@@ -5,7 +5,7 @@ erDiagram
         varchar nome
         varchar email UK
         varchar password_hash
-        enum perfil "OPERADOR, ADMINISTRADOR"
+        varchar perfil
         datetime criado_em
     }
 
@@ -16,13 +16,13 @@ erDiagram
         varchar tipo
         varchar localizacao
         varchar unidade_medida
-        enum estado "ATIVO, INATIVO, SEM_SINAL"
+        varchar estado
         datetime ultima_comunicacao
     }
 
     LIMITE {
         int id PK
-        int sensor_id FK, UK
+        int sensor_id FK
         int administrador_id FK
         decimal valor_minimo
         decimal valor_maximo
@@ -48,20 +48,20 @@ erDiagram
         decimal limite_ultrapassado
         datetime data_hora_criacao
         datetime data_hora_atualizacao
-        enum estado "ATIVO, RECONHECIDO, RESOLVIDO"
+        varchar estado
     }
 
     RECONHECIMENTO {
         int id PK
-        int alarme_id FK, UK
+        int alarme_id FK
         int operador_id FK
         datetime data_hora
         text observacoes
     }
 
-    UTILIZADOR ||--o{ SENSOR : "regista (admin)"
-    UTILIZADOR ||--o{ LIMITE : "configura (admin)"
-    UTILIZADOR ||--o{ RECONHECIMENTO : "efetua (operador)"
+    UTILIZADOR ||--o{ SENSOR : "regista"
+    UTILIZADOR ||--o{ LIMITE : "configura"
+    UTILIZADOR ||--o{ RECONHECIMENTO : "efetua"
     SENSOR ||--o| LIMITE : "possui"
     SENSOR ||--o{ LEITURA : "envia"
     SENSOR ||--o{ ALARME : "gera"
