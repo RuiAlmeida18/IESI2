@@ -9,9 +9,9 @@ classDiagram
     }
 
     class Operador {
-        +consultarAlarmesAtivos() List~Alarme~
-        +consultarHistoricoLeituras(int sensorId, DateTime inicio, DateTime fim) List~Leitura~
-        +consultarEstadoSensores() List~Sensor~
+        +consultarAlarmesAtivos() List
+        +consultarHistoricoLeituras(int sensorId, DateTime inicio, DateTime fim) List
+        +consultarEstadoSensores() List
     }
 
     class Administrador {
@@ -84,18 +84,14 @@ classDiagram
         RESOLVIDO
     }
 
-    %% Herança
     Utilizador <|-- Operador
     Utilizador <|-- Administrador
-
-    %% Relações principais
-    Sensor "1" *-- "0..1" Limite : possui >
-    Sensor "1" *-- "0..*" Leitura : regista >
-    Sensor "1" -- "0..*" Alarme : gera >
-    Leitura "1" -- "0..1" Alarme : origina >
-    Alarme "1" -- "0..1" Reconhecimento : tem >
-    Operador "1" -- "0..*" Reconhecimento : efetua >
-    Administrador "1" -- "0..*" Sensor : gere >
-    Administrador "1" -- "0..*" Limite : define >
-}
+    Sensor "1" *-- "0..1" Limite : possui
+    Sensor "1" *-- "0..*" Leitura : regista
+    Sensor "1" -- "0..*" Alarme : gera
+    Leitura "1" -- "0..1" Alarme : origina
+    Alarme "1" -- "0..1" Reconhecimento : tem
+    Operador "1" -- "0..*" Reconhecimento : efetua
+    Administrador "1" -- "0..*" Sensor : gere
+    Administrador "1" -- "0..*" Limite : define
 ```
