@@ -1,6 +1,6 @@
 ```mermaid
 classDiagram
-    direction LR
+   direction TB
 
     class Utilizador {
         -int id
