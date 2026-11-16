@@ -1,5 +1,7 @@
 ```mermaid
 classDiagram
+    direction LR
+
     class Utilizador {
         -int id
         -String nome
@@ -10,13 +12,13 @@ classDiagram
 
     class Operador {
         +consultarAlarmesAtivos() List
-        +consultarHistoricoLeituras(int sensorId, DateTime inicio, DateTime fim) List
+        +consultarHistorico(int, DateTime, DateTime) List
         +consultarEstadoSensores() List
     }
 
     class Administrador {
-        +registarSensor(String nome, String tipo, String localizacao, String unidade) Sensor
-        +configurarLimites(int sensorId, float min, float max) Limite
+        +registarSensor(String, String, String, String) Sensor
+        +configurarLimites(int, float, float) Limite
     }
 
     class Sensor {
@@ -27,8 +29,8 @@ classDiagram
         -String unidadeMedida
         -EstadoSensor estado
         -DateTime ultimaComunicacao
-        +receberLeitura(float valor, String unidade, DateTime dataHora) Leitura
-        +atualizarEstado(EstadoSensor novoEstado) void
+        +receberLeitura(float, String, DateTime) Leitura
+        +atualizarEstado(EstadoSensor) void
     }
 
     class Limite {
@@ -36,8 +38,8 @@ classDiagram
         -float valorMinimo
         -float valorMaximo
         -DateTime dataAtualizacao
-        +validarLimites(float min, float max) bool
-        +estaForaDosLimites(float valor) bool
+        +validarLimites(float, float) bool
+        +estaForaDosLimites(float) bool
     }
 
     class Leitura {
@@ -59,7 +61,7 @@ classDiagram
         -DateTime dataHoraCriacao
         -DateTime dataHoraAtualizacao
         -EstadoAlarme estado
-        +atualizarOcorrencia(float novoValor) void
+        +atualizarOcorrencia(float) void
         +marcarComoReconhecido() void
     }
 
@@ -67,7 +69,7 @@ classDiagram
         -int id
         -DateTime dataHora
         -String observacoes
-        +registar(Alarme alarme, Operador operador) void
+        +registar(Alarme, Operador) void
     }
 
     class EstadoSensor {
