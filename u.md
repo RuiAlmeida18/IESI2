@@ -1,27 +1,6 @@
 ```mermaid
 classDiagram
 
-class EstadoSensor {
-  <<enumeration>>
-  ATIVO
-  INATIVO
-  SEM_SINAL
-}
-
-class EstadoAlarme {
-  <<enumeration>>
-  ATIVO
-  RECONHECIDO
-  RESOLVIDO
-}
-
-class EstadoLeitura {
-  <<enumeration>>
-  VALIDA
-  INVALIDA
-  SUSPEITA
-}
-
 class Utilizador {
   -int id
   -String nome
@@ -92,6 +71,27 @@ class Reconhecimento {
   +registar() void
 }
 
+class EstadoSensor {
+  <<enumeration>>
+  ATIVO
+  INATIVO
+  SEM_SINAL
+}
+
+class EstadoLeitura {
+  <<enumeration>>
+  VALIDA
+  INVALIDA
+  SUSPEITA
+}
+
+class EstadoAlarme {
+  <<enumeration>>
+  ATIVO
+  RECONHECIDO
+  RESOLVIDO
+}
+
 Utilizador <|-- Administrador
 Utilizador <|-- Operador
 
@@ -99,6 +99,7 @@ Administrador "1" --> "0..*" Sensor : gere
 Sensor "1" --> "0..*" Leitura : regista
 Sensor "1" --> "0..*" Limite : possui
 Leitura "1" --> "0..1" Alarme : gera
+
 Alarme "1" --> "0..1" Reconhecimento : tem
 Operador "1" --> "0..*" Reconhecimento : efetua
 
@@ -106,38 +107,3 @@ Sensor --> EstadoSensor
 Leitura --> EstadoLeitura
 Alarme --> EstadoAlarme
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
