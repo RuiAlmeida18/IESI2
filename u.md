@@ -1,132 +1,111 @@
 ```mermaid
-```plantuml
-@startuml
+classDiagram
 
-enum EstadoSensor {
+class EstadoSensor {
+  <<enumeration>>
   ATIVO
   INATIVO
   SEM_SINAL
 }
 
-enum EstadoAlarme {
+class EstadoAlarme {
+  <<enumeration>>
   ATIVO
   RECONHECIDO
   RESOLVIDO
 }
 
-enum EstadoLeitura {
+class EstadoLeitura {
+  <<enumeration>>
   VALIDA
   INVALIDA
   SUSPEITA
 }
 
 class Utilizador {
-  - id: int
-  - nome: String
-  - email: String
-  - passwordHash: String
-  + autenticar(): bool
+  -int id
+  -String nome
+  -String email
+  -String passwordHash
+  +autenticar() bool
 }
 
 class Administrador {
-  + registarSensor(sensor: Sensor): void
-  + configurarLimites(sensor: Sensor, limite: Limite): void
+  +registarSensor(Sensor sensor) void
+  +configurarLimites(Sensor sensor, Limite limite) void
 }
 
 class Operador {
-  + consultarAlarmesAtivos(): List
-  + consultarHistorico(dataInicio: DateTime, dataFim: DateTime): List
-  + consultarEstadoSensores(): List
-  + reconhecerAlarme(alarme: Alarme): Reconhecimento
-  + comunicarAnomalia(descricao: String): void
+  +consultarAlarmesAtivos() List
+  +consultarHistorico(DateTime dataInicio, DateTime dataFim) List
+  +consultarEstadoSensores() List
+  +reconhecerAlarme(Alarme alarme) Reconhecimento
+  +comunicarAnomalia(String descricao) void
 }
 
 class Sensor {
-  - id: int
-  - nome: String
-  - tipo: String
-  - localizacao: String
-  - unidadeMedida: String
-  - estado: EstadoSensor
-  - ultimaComunicacao: DateTime
-  + receberLeitura(valor: float, dataHora: DateTime): Leitura
-  + atualizarEstado(estado: EstadoSensor): void
+  -int id
+  -String nome
+  -String tipo
+  -String localizacao
+  -String unidadeMedida
+  -EstadoSensor estado
+  -DateTime ultimaComunicacao
+  +receberLeitura(float valor, DateTime dataHora) Leitura
+  +atualizarEstado(EstadoSensor estado) void
 }
 
 class Leitura {
-  - id: int
-  - valor: float
-  - unidade: String
-  - dataHora: DateTime
-  - estado: EstadoLeitura
-  + validarFormato(): bool
-  + classificar(): void
+  -int id
+  -float valor
+  -String unidade
+  -DateTime dataHora
+  -EstadoLeitura estado
+  +validarFormato() bool
+  +classificar() void
 }
 
 class Limite {
-  - id: int
-  - valorMinimo: float
-  - valorMaximo: float
-  - dataAtualizacao: DateTime
-  + estaForaDosLimites(valor: float): bool
+  -int id
+  -float valorMinimo
+  -float valorMaximo
+  -DateTime dataAtualizacao
+  +estaForaDosLimites(float valor) bool
 }
 
 class Alarme {
-  - id: int
-  - tipoProblema: String
-  - valorRegistado: float
-  - limiteUltrapassado: String
-  - dataHoraCriacao: DateTime
-  - dataHoraAtualizacao: DateTime
-  - estado: EstadoAlarme
-  + atualizarEstado(estado: EstadoAlarme): void
-  + marcarComoReconhecido(): void
+  -int id
+  -String tipoProblema
+  -float valorRegistado
+  -String limiteUltrapassado
+  -DateTime dataHoraCriacao
+  -DateTime dataHoraAtualizacao
+  -EstadoAlarme estado
+  +atualizarEstado(EstadoAlarme estado) void
+  +marcarComoReconhecido() void
 }
 
 class Reconhecimento {
-  - id: int
-  - dataHora: DateTime
-  - observacao: String
-  + registar(): void
+  -int id
+  -DateTime dataHora
+  -String observacao
+  +registar() void
 }
 
 Utilizador <|-- Administrador
 Utilizador <|-- Operador
 
-Administrador "1" -- "0..*" Sensor : gere
-Sensor "1" -- "0..*" Leitura : regista
-Sensor "1" -- "0..*" Limite : possui
-Leitura "1" -- "0..1" Alarme : gera
-Alarme "1" -- "0..1" Reconhecimento : tem
-Operador "1" -- "0..*" Reconhecimento : efetua
+Administrador "1" --> "0..*" Sensor : gere
+Sensor "1" --> "0..*" Leitura : regista
+Sensor "1" --> "0..*" Limite : possui
+Leitura "1" --> "0..1" Alarme : gera
+Alarme "1" --> "0..1" Reconhecimento : tem
+Operador "1" --> "0..*" Reconhecimento : efetua
 
 Sensor --> EstadoSensor
 Leitura --> EstadoLeitura
 Alarme --> EstadoAlarme
-
-@enduml
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
 
 
 
