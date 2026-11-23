@@ -1,5 +1,4 @@
-Se também quiseres pôr o diagrama em formato PlantUML no GitHub, podes usar esta versão:
-
+```mermaid
 ```plantuml
 @startuml
 
